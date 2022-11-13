@@ -1,7 +1,6 @@
-[submodule "frontend"]
-	path = frontend
+[submodule "My-Portfolio-back"]
+	path = My-Portfolio-back
+	url = https://github.com/LouvAndTech/My-Portfolio-back.git
+[submodule "My-Portfolio-front"]
+	path = My-Portfolio-front
 	url = https://github.com/LouvAndTech/My-Portfolio-front.git
-
-[submodule "backend"]
-    path = backend
-    url = https://github.com/LouvAndTech/My-Portfolio-back.git
