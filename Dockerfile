@@ -3,14 +3,14 @@ FROM golang:1.19.3-alpine3.16 AS build
 
 WORKDIR /
 
-# First the backend
+# Build the backend
 # Copy the dependencies list
-COPY ./backend/go.mod ./
-COPY ./backend/go.sum ./
+COPY ./My-Portfolio-back/go.mod ./
+COPY ./My-Portfolio-back/go.sum ./
 # Install dependencies
 RUN go mod download
 #Copy the backend code
-COPY ./backend/*.go ./
+COPY ./My-Portfolio-back/*.go ./
 # Build the backend
 RUN CGO_ENABLED=0 go build -o ./backend-exe
 
@@ -21,13 +21,12 @@ FROM gcr.io/distroless/base-debian10
 #create a directory for the app
 WORKDIR /
 
-# Copy the backend
+# Copy the backend binary
 COPY --from=build /backend-exe ./
 # Copy the frontend Code
-COPY ./frontend/dist/portfolio ./pb_public/
+COPY ./My-Portfolio-front/dist/portfolio ./pb_public/
 # Expose the port
 EXPOSE 8090
-#user
-#USER nonroot:nonroot
+
 # Execute the backend
 CMD [ "./backend-exe", "serve", "--http", "0.0.0.0:8090" ]
